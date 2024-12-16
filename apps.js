@@ -1,4 +1,4 @@
-// List of apps (100 apps)
+// List of apps
 const apps = {
   mac: [
     { name: "Audacity", description: "Audio editing and recording tool.", link: "https://www.audacityteam.org/" },
@@ -92,12 +92,14 @@ const apps = {
     { name: "VLC Media Player", description: "Media player for various audio and video formats.", link: "https://www.videolan.org/vlc/" }
   ]
 };
-];
 
 // Function to dynamically load the apps into the page
-function loadApps() {
+function loadApps(platform) {
   const container = document.getElementById('app-container');
-  apps.forEach(app => {
+  container.innerHTML = ''; // Clear previous content
+  
+  const selectedApps = apps[platform];
+  selectedApps.forEach(app => {
     const card = document.createElement('div');
     card.classList.add('app-card');
     card.innerHTML = `
@@ -132,6 +134,6 @@ document.querySelectorAll('a').forEach(anchor => {
   });
 });
 
-// Load apps when the page loads
-window.onload = loadApps;
+// Load apps when the page loads (default to Mac platform)
+window.onload = () => loadApps('mac');
 
