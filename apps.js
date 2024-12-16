@@ -1,3 +1,4 @@
+// List of apps (100 apps)
 const apps = {
   mac: [
     { name: "Audacity", description: "Audio editing and recording tool.", link: "https://www.audacityteam.org/" },
@@ -91,3 +92,46 @@ const apps = {
     { name: "VLC Media Player", description: "Media player for various audio and video formats.", link: "https://www.videolan.org/vlc/" }
   ]
 };
+];
+
+// Function to dynamically load the apps into the page
+function loadApps() {
+  const container = document.getElementById('app-container');
+  apps.forEach(app => {
+    const card = document.createElement('div');
+    card.classList.add('app-card');
+    card.innerHTML = `
+      <h3>${app.name}</h3>
+      <p>${app.description}</p>
+      <a href="${app.link}" target="_blank">Download</a>
+    `;
+    container.appendChild(card);
+  });
+}
+
+// Dark Mode Toggle
+document.getElementById('darkModeToggle').addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  const button = document.getElementById('darkModeToggle');
+  if (document.body.classList.contains('dark-mode')) {
+    button.innerText = '🌞 Light Mode';
+  } else {
+    button.innerText = '🌙 Dark Mode';
+  }
+});
+
+// Smooth scrolling behavior for anchor links
+document.querySelectorAll('a').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    window.scrollTo({
+      top: target.offsetTop,
+      behavior: 'smooth'
+    });
+  });
+});
+
+// Load apps when the page loads
+window.onload = loadApps;
+
