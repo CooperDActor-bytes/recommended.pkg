@@ -1,47 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>recommended.pkg</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="apps.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recommended.pkg</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Recommended.pkg</h1>
-        <nav>
-            <ul>
-                <li><a href="#mac">Mac</a></li>
-                <li><a href="#windows">Windows</a></li>
-                <li><a href="#debian">Debian</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <!-- Mac Section -->
-        <section id="mac">
-            <h2>Free and Open Source Apps for Mac</h2>
-            <button onclick="loadApps('mac')">Load Apps</button>
-            <ul id="mac-apps"></ul>
-        </section>
+  <header>
+    <h1>App List</h1>
+    <button id="darkModeToggle">🌙 Dark Mode</button>
+  </header>
+  <div id="app-container" class="app-container"></div>
+  <footer>
+    <p>&copy; 2024 SaltyMedia.</p>
+  </footer>
 
-        <!-- Windows Section -->
-        <section id="windows">
-            <h2>Free and Open Source Apps for Windows</h2>
-            <button onclick="loadApps('windows')">Load Apps</button>
-            <ul id="windows-apps"></ul>
-        </section>
-
-        <!-- Debian Section -->
-        <section id="debian">
-            <h2>Free and Open Source Apps for Debian</h2>
-            <button onclick="loadApps('debian')">Load Apps</button>
-            <ul id="debian-apps"></ul>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 SaltyMedia. All rights reserved.</p>
-    </footer>
+  <script src="apps.js"></script>  <!-- Updated script reference -->
 </body>
 </html>
