@@ -1,6 +1,5 @@
-// List of apps
 const apps = {
-  mac: [
+    mac: [
     { name: "Audacity", description: "Audio editing and recording tool.", link: "https://www.audacityteam.org/" },
     { name: "LibreOffice", description: "Free alternative to Microsoft Office.", link: "https://www.libreoffice.org/" },
     { name: "VLC Media Player", description: "Open-source media player.", link: "https://www.videolan.org/vlc/" },
@@ -93,13 +92,11 @@ const apps = {
   ]
 };
 
-// Function to dynamically load the apps into the page
-function loadApps(platform) {
-  const container = document.getElementById('app-container');
-  container.innerHTML = ''; // Clear previous content
-  
-  const selectedApps = apps[platform];
-  selectedApps.forEach(app => {
+// Function to dynamically load the apps into the respective platform container
+function loadApps() {
+  // Load Mac Apps
+  const macContainer = document.getElementById('mac-apps');
+  apps.mac.forEach(app => {
     const card = document.createElement('div');
     card.classList.add('app-card');
     card.innerHTML = `
@@ -107,33 +104,36 @@ function loadApps(platform) {
       <p>${app.description}</p>
       <a href="${app.link}" target="_blank">Download</a>
     `;
-    container.appendChild(card);
+    macContainer.appendChild(card);
+  });
+
+  // Load Windows Apps
+  const windowsContainer = document.getElementById('windows-apps');
+  apps.windows.forEach(app => {
+    const card = document.createElement('div');
+    card.classList.add('app-card');
+    card.innerHTML = `
+      <h3>${app.name}</h3>
+      <p>${app.description}</p>
+      <a href="${app.link}" target="_blank">Download</a>
+    `;
+    windowsContainer.appendChild(card);
+  });
+
+  // Load Debian Apps
+  const debianContainer = document.getElementById('debian-apps');
+  apps.debian.forEach(app => {
+    const card = document.createElement('div');
+    card.classList.add('app-card');
+    card.innerHTML = `
+      <h3>${app.name}</h3>
+      <p>${app.description}</p>
+      <a href="${app.link}" target="_blank">Download</a>
+    `;
+    debianContainer.appendChild(card);
   });
 }
 
-// Dark Mode Toggle
-document.getElementById('darkModeToggle').addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-  const button = document.getElementById('darkModeToggle');
-  if (document.body.classList.contains('dark-mode')) {
-    button.innerText = '🌞 Light Mode';
-  } else {
-    button.innerText = '🌙 Dark Mode';
-  }
-});
-
-// Smooth scrolling behavior for anchor links
-document.querySelectorAll('a').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    window.scrollTo({
-      top: target.offsetTop,
-      behavior: 'smooth'
-    });
-  });
-});
-
-// Load apps when the page loads (default to Mac platform)
-window.onload = () => loadApps('mac');
+// Call the loadApps function when the page is loaded
+window.onload = loadApps;
 
